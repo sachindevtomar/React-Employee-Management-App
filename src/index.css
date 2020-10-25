@@ -13,4 +13,12 @@ code {
     monospace;
 }
 
+.showPathButton{
+  float:right;
+}
 
+.hierarchyTreeParent{
+  float: left;
+  height: 700px;
+  width: 1100px;
+}

@@ -14,7 +14,6 @@ import reducers from '../src/reducers';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

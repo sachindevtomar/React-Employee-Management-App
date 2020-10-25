@@ -18,5 +18,8 @@ export const EMPLOYEE_DELETE_SUCCESS = 'employee_delete_success';
 export const EMPLOYEE_ERROR = 'employee_error';
 
 
-
-
+//Helper Actions
+//Open Modal for edit employee with employee details
+export const EMPLOYEE_DETAILS_EDIT_MODAL = 'employee_details_edit_modal';
+//Close Modal for edit employee with employee details
+export const EMPLOYEE_DETAILS_EDIT_MODAL_ClOSE = 'employee_details_edit_modal_close';

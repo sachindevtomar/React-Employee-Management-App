@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import EditEmployeeDetails from '../EditEmployeeDetails'
 import './styles.css';
+import { connect } from 'react-redux';
+import { openEditEmployeeModal } from '../../actions';
 
-export default class EmployeeTable extends Component {
+class EmployeeTable extends Component {
 
     constructor(props) {
         super(props);
@@ -61,10 +63,19 @@ export default class EmployeeTable extends Component {
                   this.setState({
                       // onView: false,
                       onEdit: true
-                  })
+                  });
+
+                  this.props.openEditEmployeeModal(
+                    {
+                      personalDetails: this.props.personalDetails,
+                      jobDetails: this.props.jobDetails,
+                      benefitsDetails: this.props.benefitsDetails
+                    });
               }}> Update </button>
           </div>
 
       )
     }
 }
+
+export default connect(null, { openEditEmployeeModal })(EmployeeTable);

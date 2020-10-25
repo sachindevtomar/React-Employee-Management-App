@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { readEmployees, deleteEmployee } from '../../actions';
+import { readEmployees, deleteEmployee, openEditEmployeeModal } from '../../actions';
 import './styles.css';
-import EmployeeTable from '../../components/EmployeeTable'
+import EmployeeTable from '../../components/EmployeeTable';
+import  EmployeeEditModal  from '../../components/Modal';
+
 
 class EmployeePage extends Component {
 
@@ -42,7 +44,8 @@ class EmployeePage extends Component {
                         }
                     }}> View </button>
                     {/* Delete */}
-                    <button className="button btn-delete-emp" onClick={() => { this.props.deleteEmployee({id:_id})} }> Delete </button>
+                    <button className="button btn-delete-emp" onClick={() => { this.props.deleteEmployee({id:_id})
+                    }}> Delete </button>
                     {
                         this.state.employeesCanView.includes(_id)? <EmployeeTable personalDetails={personalDetails} jobDetails={jobDetails} benefitsDetails={benefitsDetails}/> : null
                     }
@@ -61,6 +64,7 @@ class EmployeePage extends Component {
                 <div className="employee-list">
                     {this.renderData()}
                 </div>
+                <EmployeeEditModal employeeDetails={this.props.editEmployeeInfo}/>
             </div>
 
         );
@@ -68,13 +72,13 @@ class EmployeePage extends Component {
 }
 
 
-const mapStatetoProps = ({ employee }) => {
+const mapStatetoProps = ({ employee, helper }) => {
     const { employees, error, employeeInfo } = employee;
-    console.log("Map State to Prop: ", JSON.stringify(employees));
+    const { editEmployeeInfo } = helper;
     return {
-        employees, error, employeeInfo
+        employees, error, employeeInfo, editEmployeeInfo
     }
 }
 
 
-export default connect(mapStatetoProps, { readEmployees, deleteEmployee })(EmployeePage);
+export default connect(mapStatetoProps, { readEmployees, deleteEmployee, openEditEmployeeModal })(EmployeePage);
