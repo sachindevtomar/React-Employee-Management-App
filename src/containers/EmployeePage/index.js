@@ -47,7 +47,8 @@ class EmployeePage extends Component {
                     <button className="button btn-delete-emp" onClick={() => { this.props.deleteEmployee({id:_id})
                     }}> Delete </button>
                     {
-                        this.state.employeesCanView.includes(_id)? <EmployeeTable personalDetails={personalDetails} jobDetails={jobDetails} benefitsDetails={benefitsDetails}/> : null
+                        this.state.employeesCanView.includes(_id) ?
+                        <EmployeeTable personalDetails={personalDetails} jobDetails={jobDetails} benefitsDetails={benefitsDetails}/> : null
                     }
                 </div>
             );
@@ -59,7 +60,7 @@ class EmployeePage extends Component {
         return (
             <div>
                 <div className="employee-art">
-                    <img src={require('../../assets/employee.png')} />
+                    <img src={require('../../assets/employee.png')} alt=""/>
                 </div>
                 <div className="employee-list">
                     {this.renderData()}

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { closeEditEmployeeModal } from '../../actions';
 
 const renderAuthButton = (employeeDetails)=>{
-      console.log(" OutSide: "+JSON.stringify(employeeDetails));
       if(employeeDetails && employeeDetails.personalDetails){
         return true;
       } else{
@@ -22,6 +21,7 @@ class EmployeeEditModal extends Component {
   	}
 
 	handleClose() {
+    //Set the state using reducer to close the edit employee modal
 		this.props.closeEditEmployeeModal();
 	}
 
@@ -30,26 +30,41 @@ class EmployeeEditModal extends Component {
 	}
 
   renderModalbody() {
-    return (
-      <div>
-        <h2 id="simple-modal-title">Text in a modal</h2>
-        <p id="simple-modal-description">
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </p>
-        <EmployeeEditModal />
-      </div>
-    );
+    if(this.props.employeeDetails && this.props.employeeDetails.personalDetails){
+
+      return (
+        <div>
+          <div className="row">
+            <div className="form-group col-md-6">
+              <label htmlFor="first-name-edit-emp">First Name:</label>
+              <input type="text" className="form-control" id="first-name-edit-emp" defaultValue={this.props.employeeDetails.personalDetails.firstName}/>
+            </div>
+            <div className="form-group col-md-6">
+              <label htmlFor="last-name-edit-emp">Last Name:</label>
+              <input type="text" className="form-control" id="last-name-edit-emp"
+                defaultValue={this.props.employeeDetails.personalDetails.lastName}/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col-md-12">
+              <label htmlFor="role-edit-emp">Role:</label>
+              <input type="text" className="form-control" id="role-edit-emp"
+                defaultValue={this.props.employeeDetails.jobDetails.title}/>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return;
   }
 
   render(){
     return (
       <div>
-        <Button variant="primary" onClick={this.handleShow}>
-					Launch demo modal
-        </Button>
 				<Modal show={renderAuthButton(this.props.employeeDetails)} onHide={this.handleClose}>
 					<Modal.Header closeButton>
-						<Modal.Title>Modal heading</Modal.Title>
+						<Modal.Title>Update Record</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>  {this.renderModalbody()} </Modal.Body>
 					<Modal.Footer>
