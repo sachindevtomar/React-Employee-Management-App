@@ -1,0 +1,21 @@
+name: Emp Management Build CI
+
+on:
+  push:
+    branches:
+    - master
+    - release/*
+
+jobs:
+  firebase-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '10.x'
+    - run: npm install
+    - run: npm run build
+    - run: npm test  
