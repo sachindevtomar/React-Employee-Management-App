@@ -4,7 +4,9 @@ import { readEmployees, deleteEmployee, openEditEmployeeModal } from '../../acti
 import './styles.css';
 import EmployeeTable from '../../components/EmployeeTable';
 import  EmployeeEditModal  from '../../components/Modal';
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 class EmployeePage extends Component {
 
@@ -26,6 +28,7 @@ class EmployeePage extends Component {
         // console.log("Render Data Props Info: ", JSON.stringify(this.state.employees));
         const employeeItem = this.props.employees.map(({ _id, personalDetails, jobDetails, benefitsDetails }) => {
             return (
+              <Col md={4}>
                 <div key={_id} className="employee-card">
                     <div> {`${personalDetails.firstName} ${personalDetails.lastName}`} </div>
                     <div> {jobDetails.employeeNumber} </div>
@@ -51,6 +54,7 @@ class EmployeePage extends Component {
                         <EmployeeTable personalDetails={personalDetails} jobDetails={jobDetails} benefitsDetails={benefitsDetails}/> : null
                     }
                 </div>
+              </Col>
             );
         });
         return employeeItem;
@@ -58,16 +62,19 @@ class EmployeePage extends Component {
 
     render() {
         return (
+          <Container>
             <div>
                 <div className="employee-art">
                     <img src={require('../../assets/employee.png')} alt=""/>
                 </div>
                 <div className="employee-list">
-                    {this.renderData()}
+                    <Row>
+                      {this.renderData()}
+                    </Row>
                 </div>
                 <EmployeeEditModal employeeDetails={this.props.editEmployeeInfo}/>
             </div>
-
+          </Container>
         );
     }
 }
