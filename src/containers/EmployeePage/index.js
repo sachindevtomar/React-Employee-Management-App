@@ -7,6 +7,7 @@ import  EmployeeEditModal  from '../../components/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import { SolarSystemLoading } from 'react-loadingg';
 
 class EmployeePage extends Component {
 
@@ -63,13 +64,16 @@ class EmployeePage extends Component {
     render() {
         return (
           <Container>
+
             <div>
-                <div className="employee-art">
-                    <img src={require('../../assets/employee.png')} alt=""/>
+                <div className="main-page-upper-section">
+                  <div className="col-md-4 col-sm-12">
+                    <img src={require('../../assets/employee.png')} alt="" className="img-responsive"/>
+                  </div>
                 </div>
                 <div className="employee-list">
                     <Row>
-                      {this.renderData()}
+                      {this.props.employees.length > 0 ? this.renderData() : <SolarSystemLoading style={{marginLeft: 'auto', marginTop: '100px', marginRight: 'auto'}}/>}
                     </Row>
                 </div>
                 <EmployeeEditModal employeeDetails={this.props.editEmployeeInfo}/>
