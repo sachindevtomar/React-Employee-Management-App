@@ -30,7 +30,7 @@ export default function (state = INITIAL_STATE, action) {
             return {
                 ...state,
                 employeeInfo: action.payload,
-                employees: state.employees.map(employee => employee.id === action.payload.id ? action.payload : employee),
+                employees: state.employees.map(employee => employee._id === action.payload._id ? action.payload : employee),
             }
         case EMPLOYEE_DELETE_SUCCESS:
             return {

@@ -29,8 +29,8 @@ class EmployeePage extends Component {
         // console.log("Render Data Props Info: ", JSON.stringify(this.state.employees));
         const employeeItem = this.props.employees.map(({ _id, personalDetails, jobDetails, benefitsDetails }) => {
             return (
-              <Col md={4}>
-                <div key={_id} className="employee-card">
+              <Col  key={_id} md={4}>
+                <div className="employee-card">
                     <div> {`${personalDetails.firstName} ${personalDetails.lastName}`} </div>
                     <div> {jobDetails.employeeNumber} </div>
                     <div> {jobDetails.title} </div>
@@ -50,9 +50,11 @@ class EmployeePage extends Component {
                     {/* Delete */}
                     <button className="button btn-delete-emp" onClick={() => { this.props.deleteEmployee({id:_id})
                     }}> Delete </button>
+
+
                     {
                         this.state.employeesCanView.includes(_id) ?
-                        <EmployeeTable personalDetails={personalDetails} jobDetails={jobDetails} benefitsDetails={benefitsDetails}/> : null
+                        <EmployeeTable personalDetails={personalDetails} jobDetails={jobDetails} benefitsDetails={benefitsDetails} id={_id}/> : null
                     }
                 </div>
               </Col>

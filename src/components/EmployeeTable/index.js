@@ -69,7 +69,8 @@ class EmployeeTable extends Component {
                     {
                       personalDetails: this.props.personalDetails,
                       jobDetails: this.props.jobDetails,
-                      benefitsDetails: this.props.benefitsDetails
+                      benefitsDetails: this.props.benefitsDetails,
+                      id: this.props.id
                     });
               }}> Update </button>
           </div>
