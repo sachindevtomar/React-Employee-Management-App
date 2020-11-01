@@ -104,7 +104,7 @@ class EmployeeEditModal extends Component {
 						<Button variant="secondary" onClick={this.handleClose}>
 							Close
             </Button>
-						<Button variant="primary" onClick={this.handleClose} className="employee-edit-modal-save-btn" onClick={this.updateEmployeeObject}>
+						<Button variant="primary" className="employee-edit-modal-save-btn" onClick={this.updateEmployeeObject}>
 							Save Changes
             </Button>
 					</Modal.Footer>

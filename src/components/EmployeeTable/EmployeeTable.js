@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditEmployeeDetails from '../EditEmployeeDetails'
+import EditEmployeeDetails from '../EditEmployeeDetails/EditEmployeeDetails'
 import './styles.css';
 import { connect } from 'react-redux';
 import { openEditEmployeeModal } from '../../actions';

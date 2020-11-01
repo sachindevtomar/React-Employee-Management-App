@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { readEmployees, deleteEmployee, openEditEmployeeModal } from '../../actions';
 import './styles.css';
-import EmployeeTable from '../../components/EmployeeTable';
-import  EmployeeEditModal  from '../../components/Modal';
+import EmployeeTable from '../../components/EmployeeTable/EmployeeTable';
+import  EmployeeEditModal  from '../../components/Modal/EmployeeEditModal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { SolarSystemLoading } from 'react-loadingg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
-class EmployeePage extends Component {
+class EmployeeCard extends Component {
 
     constructor(props) {
         super(props);
@@ -29,13 +31,17 @@ class EmployeePage extends Component {
         // console.log("Render Data Props Info: ", JSON.stringify(this.state.employees));
         const employeeItem = this.props.employees.map(({ _id, personalDetails, jobDetails, benefitsDetails }) => {
             return (
-              <Col  key={_id} md={4}>
+              <Col key={_id} md={4}>
                 <div className="employee-card">
+                    {/* Delete */}
+                    <FontAwesomeIcon className="btn-delete-emp" icon={faTrashAlt} onClick={() => { this.props.deleteEmployee({id:_id})
+                    }}/>
+
                     <div> {`${personalDetails.firstName} ${personalDetails.lastName}`} </div>
                     <div> {jobDetails.employeeNumber} </div>
                     <div> {jobDetails.title} </div>
                     {/* View */}
-                    <button className="button btn-view-emp" onClick={() => {
+                    <FontAwesomeIcon className="btn-view-emp" icon={this.state.employeesCanView.includes(_id) ? faChevronUp : faChevronDown} onClick={() => {
                         if(!this.state.employeesCanView.includes(_id)){
                           this.setState({
                               employeesCanView: this.state.employeesCanView.concat(_id)
@@ -46,11 +52,7 @@ class EmployeePage extends Component {
                               return employee !== _id
                           })});
                         }
-                    }}> View </button>
-                    {/* Delete */}
-                    <button className="button btn-delete-emp" onClick={() => { this.props.deleteEmployee({id:_id})
-                    }}> Delete </button>
-
+                    }}/>
 
                     {
                         this.state.employeesCanView.includes(_id) ?
@@ -95,4 +97,4 @@ const mapStatetoProps = ({ employee, helper }) => {
 }
 
 
-export default connect(mapStatetoProps, { readEmployees, deleteEmployee, openEditEmployeeModal })(EmployeePage);
+export default connect(mapStatetoProps, { readEmployees, deleteEmployee, openEditEmployeeModal })(EmployeeCard);

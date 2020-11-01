@@ -3,16 +3,15 @@ import React, { Component } from 'react';
 //import { connect } from 'react-redux';
 import './App.css';
 //Pages
-import LoginPage from './containers/LoginPage';
-import EmployeePage from './containers/EmployeePage';
+import EmployeeCard from './containers/EmployeeCard/EmployeeCard';
 
 class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app-main">
         {/* <LoginPage></LoginPage> */}
-        <EmployeePage></EmployeePage>
+        <EmployeeCard></EmployeeCard>
       </div>
     );
   }
