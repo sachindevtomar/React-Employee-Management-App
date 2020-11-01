@@ -49,6 +49,8 @@ class EmployeeEditModal extends Component {
     objToBeUpdated.jobDetails.title = this.state.empRoleName ? this.state.empRoleName : this.props.employeeDetails.jobDetails.title;
 
     this.props.updateEmployee({id:this.props.employeeDetails.id, data: objToBeUpdated})
+    //Set the state using reducer to close the edit employee modal
+		this.props.closeEditEmployeeModal();
   }
 
 	handleClose() {
