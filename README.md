@@ -1,5 +1,5 @@
 # React-Employee-Management-App
-Sample React + Redux App for managing employee data (CRUD)
+Sample React + Redux responsive App for managing employee data (CRUD)
 
 
 # Preview
@@ -26,12 +26,3 @@ Sample React + Redux App for managing employee data (CRUD)
    - To install depedencies in package.json, npm install.
    - Run react project using `npm start`.
 
-
-
-# Test Line
-
-	Update by AldenJeje
-
-   New details for new employee
-
-   a to z
